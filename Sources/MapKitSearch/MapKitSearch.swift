@@ -5,7 +5,7 @@ import Combine
 import MapKit
 import SwiftUI
 
-public protocol MapKitSearchProtocol: MKLocalSearchCompleterDelegate {
+public protocol MapKitSearchProtocol {
 
     var autoCompleteResults: [MKLocalSearchCompletion] { get set }
     var searchCompleter: MKLocalSearchCompleter { get }
@@ -17,14 +17,6 @@ public protocol MapKitSearchProtocol: MKLocalSearchCompleterDelegate {
 }
 
 extension MapKitSearchProtocol {
-
-    public func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        autoCompleteResults = completer.results
-    }
-
-    public func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        autoCompleteResults.removeAll()
-    }
 
     public func autoComplete() {
         searchCompleter.queryFragment = searchTerm
